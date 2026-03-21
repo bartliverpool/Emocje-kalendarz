@@ -155,15 +155,10 @@ function formatMessage(schedule) {
   return message;
 }
 
-// Codzienny raport: dziś + jutro w jednej wiadomości
+// Codzienny raport: tylko dzisiejszy program
 async function formatDailyReport() {
   const today = await fetchSchedule(0);
-  const tomorrow = await fetchSchedule(1);
-
-  const todayMsg = formatMessage(today);
-  const tomorrowMsg = formatMessage(tomorrow);
-
-  return `${todayMsg}\n\n\n${tomorrowMsg}`;
+  return formatMessage(today);
 }
 
 module.exports = { fetchSchedule, formatMessage, formatDailyReport };
